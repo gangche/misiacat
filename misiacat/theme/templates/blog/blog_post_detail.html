@@ -24,7 +24,14 @@
 {% block main %}
 <section id="blog" class="container">
 	<div class="row">
-		<div class="col-sm-8">
+
+		{% block right_panel %}
+		<aside class="col-sm-4 col-sm-push-8">
+		{% include "blog/includes/filter_panel.html" %}
+		</aside>
+		{% endblock %}
+
+		<div class="col-sm-8 col-sm-pull-4">
 			<div class="blog">
 			<div class="blog-item">
 		 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
@@ -83,12 +90,15 @@
 
 
 {% block blog_post_list_post_content %}
+
+{% endblock %}
+{% block blog_post_detail_content %}
 {% editable blog_post.content %}
-{{ blog_post.description_from_content|safe }}
+{{ blog_post.content|richtext_filters|safe }}
 {% endeditable %}
 {% endblock %}
 
- <a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
+{# <a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>#}
 {% block blog_post_list_post_links %}
 {% keywords_for blog_post as tags %}
     {% if tags %}
@@ -161,7 +171,3 @@
 {% endif %}
 
 {% endblock %}
-
-
-
-
