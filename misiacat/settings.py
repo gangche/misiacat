@@ -1,4 +1,3 @@
-
 from __future__ import absolute_import, unicode_literals
 import os
 
@@ -113,9 +112,9 @@ LANGUAGE_CODE = "en"
 # Supported languages
 LANGUAGES = (
     ('en', _('English')),
-    ('zh-CN', _('Chinese')),
+    ('zh-cn', _('Chinese')),
 )
-MODELTRANSLATION_FALLBACK_LANGUAGES = ('zh-CN', 'en')
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('zh-cn', 'en')
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
@@ -136,6 +135,7 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 # The numeric mode to set newly-uploaded files to. The value should be
 # a mode you'd pass directly to os.chmod.
 FILE_UPLOAD_PERMISSIONS = 0o644
+FILEBROWSER_MAX_UPLOAD_SIZE = 1024000000
 
 
 #############
@@ -251,7 +251,7 @@ INSTALLED_APPS = (
     "mezzanine.galleries",
     "mezzanine.twitter",
     "mezzanine.accounts",
-    "mezzanine.mobile",
+    # "mezzanine.mobile",
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
